@@ -10,15 +10,17 @@ import './App.css'
  * Library import
  */
 import { Router } from 'react-router-dom'
+import Footer from './Components/Footer'
 
 function App() {
  
 
   return (
    <>
-   <Router>
+   {/* <Router>
 
-   </Router>
+   </Router> */}
+   <Footer/>
    </>
   )
 }
