@@ -16,7 +16,7 @@ import {Provider} from 'react-redux'
  * component import
  */
 import App from './App.jsx'
-import store from './redux/store.js'
+import store from './redux/store'
 
 
 createRoot(document.getElementById('root')).render(
