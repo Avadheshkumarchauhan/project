@@ -114,7 +114,7 @@ function HomeLayout({ children }) {
         {/* DRAWER PANEL */}
         <div
             id="drawer"
-            className="fixed z-50 top-0 left-0 h-[40%] w-64  bg-base-200 shadow-xl
+            className="fixed z-50 top-0 left-0 h-full w-64  bg-base-200 shadow-xl
                     -translate-x-full transition-transform duration-300">
             {/* CLOSE BUTTON */}
             <div className="absolute right-3 top-3 ">
