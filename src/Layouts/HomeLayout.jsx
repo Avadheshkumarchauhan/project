@@ -65,11 +65,19 @@
 
 import { FiMenu } from "react-icons/fi";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux'
 import Footer from "../Components/Footer";
 
 function HomeLayout({ children }) {
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // for checking user is logged in
+  const isLoggenIn = useSelector((state) => state?.auth?.isloggedIn);
+  // for diisplaying the option acc to role
+  const role = useSelector((state)=> state?.auth?.role);
   function openDrawer() {
     document.getElementById("drawer").classList.remove("-translate-x-full");
     document.getElementById("overlay").classList.remove("hidden");
@@ -78,6 +86,13 @@ function HomeLayout({ children }) {
   function closeDrawer() {
     document.getElementById("drawer").classList.add("-translate-x-full");
     document.getElementById("overlay").classList.add("hidden");
+  }
+
+  function handleLogout(e){
+    e.preventDefault();
+    // const res = await dispatch(logout())
+    // if(res?.payload?.sucess)
+      navigate('/')
   }
 
   return (
@@ -99,7 +114,7 @@ function HomeLayout({ children }) {
         {/* DRAWER PANEL */}
         <div
             id="drawer"
-            className="fixed z-50 top-0 left-0 h-full w-64 bg-white shadow-xl
+            className="fixed z-50 top-0 left-0 h-[40%] w-64  bg-base-200 shadow-xl
                     -translate-x-full transition-transform duration-300">
             {/* CLOSE BUTTON */}
             <div className="absolute right-3 top-3 ">
@@ -110,11 +125,40 @@ function HomeLayout({ children }) {
             </div>
 
             {/* MENU */}
-            <ul className="flex flex-col gap-5 p-6 mt-12 text-lg font-medium">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/courses">All courses</Link></li>
-                <li><Link to="/contact">Contact Us</Link></li>
-                <li><Link to="/about">About Us</Link></li>
+            <ul className="flex flex-col gap-1 p-6 mt-12 text-lg font-medium ">
+                <li><Link to="/" className="hover:text-white">Home</Link></li>
+                {isLoggenIn && role == "ADMIN" && (
+                  <li>
+                    <Link to='/admin/dashbord' className="hover:text-white">Admin DashBord</Link>
+                  </li>
+                )}
+                <li><Link to="/courses" className="hover:text-white">All courses</Link></li>
+                <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
+                <li><Link to="/about" className="hover:text-white">About Us</Link></li>
+                {!isLoggenIn && (
+                  <li className="absolute bottom-4 w-[90%] ">
+                    <div className="w-full flex items-center justify-center gap-2 px-2">
+                      <button className=" px-4 py-1 font-semibold rounded-md w-full bg-indigo-500 text-white hover:bg-yellow-500 hover:text-black cursor-pointer">
+                            <Link to='/login' >Login</Link>
+                      </button>
+                      <button className=" px-4 py-1 font-semibold rounded-md w-full bg-fuchsia-500 text-white hover:bg-green-300 hover:text-black cursor-pointer">
+                            <Link to='/signup'>Signup</Link>
+                      </button>
+                    </div>
+                  </li>
+                )}
+                {isLoggenIn && (
+                  <li className="absolute bottom-4 w-[90%] ">
+                    <div className="w-full flex items-center justify-center gap-2 px-2">
+                      <button className=" px-4 py-1 font-semibold rounded-md w-full bg-indigo-500 text-white hover:bg-yellow-500 hover:text-black cursor-pointer">
+                            <Link to='/user/profile' >Profile</Link>
+                      </button>
+                      <button className=" px-4 py-1 font-semibold rounded-md w-full bg-fuchsia-500 text-white hover:bg-green-300 hover:text-black cursor-pointer">
+                            <Link onClick={handleLogout}>Logout</Link>
+                      </button>
+                    </div>
+                  </li>
+                )}
             </ul>
         </div>
 
