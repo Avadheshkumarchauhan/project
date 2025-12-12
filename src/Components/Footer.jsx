@@ -1,4 +1,4 @@
-import {BsFacebook, BsInstagram, BsLinkedin, BsTwitterX } from 'react-icons/bs';
+import {BsFacebook, BsInstagram, BsLinkedin, BsTwitterX,BsGithub } from 'react-icons/bs';
 function Footer(){
 
     const currentDate = new Date();
@@ -15,6 +15,9 @@ return(
                 </a>
                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
                     <BsInstagram/>
+                </a>
+                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
+                    <BsGithub/>
                 </a>
                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
                     <BsLinkedin/>
