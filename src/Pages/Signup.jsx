@@ -4,6 +4,7 @@ import {BsPersonCircle} from 'react-icons/bs';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import { createAccount } from "../redux/slices/authSlice";
 
 function Signup(){
 
@@ -14,7 +15,7 @@ function Signup(){
     const [priviewImage,setpreviewImage] = useState("");
 
     const [signupData, setSignupData] = useState({
-        fullname:"",
+        fullName:"",
         email:"",
         password:"",
         avatar:""
@@ -37,30 +38,81 @@ function Signup(){
             const fileReader = new FileReader();
             fileReader.readAsDataURL(uploadedImage);
             fileReader.addEventListener('load', function(){
-               // console.log("Result : ",this.result);
-                
+                               
                 setpreviewImage(this.result)
             })
         }
     }
-    function createNewAccount(event){
+
+    async function createNewAccount(event)
+    {
         event.preventDefault();
-        if(!signupData.fullname|| !signupData.email || !signupData.password || !signupData.avatar){
-            toast.error("Please fill all the details")
+        if(!signupData.fullName|| !signupData.email || !signupData.password || !signupData.avatar){
+            toast.error("Please fill all the details");
+            return;
         }
-    }
+        /**
+         * checking name field length
+         */
+        if(signupData.fullName.length<5){
+            toast.error("Name should be atleast of 5 charaters ");
+
+            return;
+        }
+        /**
+         * checking valid email
+         */
+        if(!signupData.email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+            toast.error("Invalid email id or examle@gmail.com type ");
+
+            return;
+        }
+        /**
+         * checking password validation
+         */
+        if(!signupData.password.match( /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)){
+            toast.error("passwordshuld be 6-16chararers long with atleast a number and special charater ");
+
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append("fullName",signupData.fullName);
+        formData.append("email",signupData.email);
+        formData.append("password",signupData.password);
+        formData.append("avatar",signupData.avatar);
+
+       // dispatch create account action
+       const response = await dispatch(createAccount(formData));
+      
+       
+       if(response?.payload?.success){
+            navigate("/");
+       }
+
+       
+
+       setSignupData({
+            fullName:"",
+            email:"",
+            password:"",
+            avatar:""
+        });
+        setpreviewImage("");
+     }
 
     return(
         <HomeLayout>
             <div className=" h-[90vh]  flex overflow-x-auto items-center justify-center">
                 <form noValidate onSubmit={createNewAccount} className="  flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow(0_0_10px_black) border-2 border-gray-600 bg-gray-600">
-                    <h1 className="text-center text-2xl font-bold">Registration Page</h1>
+                    <h1 className="text-center text-2xl font-bold  ">Registration Page</h1>
 
-                    <label htmlFor="image_uploads" className="cursor-pointer">
+                    <label htmlFor="image_uploads" className="cursor-pointer ">
                         {priviewImage ? (
                             <img className="w-24 h-24 rounded-full m-auto" src={priviewImage} />
                          ) : (
-                                <BsPersonCircle className="w-24 h-24 rounded-full m-auto"/>
+                                <BsPersonCircle className="w-24 h-24 rounded-full  m-auto"/>
                         )}
                     </label>
                     <input 
@@ -73,16 +125,16 @@ function Signup(){
                         
                     />
                      <div className="flex flex-col gap-1">
-                        <label htmlFor="fullname" className="font-semibold ">Name</label>
+                        <label htmlFor="fullName" className="font-semibold ">Name</label>
                         <input 
                             type="text" 
                             required
-                            name="fullname"
-                            id="fullname"
+                            name="fullName"
+                            id="fullName"
                             placeholder="Enter fullname ..."
                             className="bg-tranparent px-2 py-1 border"
                             onChange={handleUserInput}
-                            value={signupData.fullname}
+                            value={signupData.fullName}
                         />
                     </div>
                     <div className="flex flex-col gap-1">

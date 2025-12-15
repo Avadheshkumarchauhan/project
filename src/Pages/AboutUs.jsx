@@ -19,7 +19,7 @@ function AboutUs(){
                         <img className="drop-shadow-2xl"
                         id='text1'
                         style={{
-                            filter:"drop-shadow(0px 10px 10px rgb(0,0,0));"
+                            filter:"drop-shadow(0px 10px 10px rgb(0,0,0))"
                         }}
                         src={aboutMainImage} alt="About main image" />
                     </div>
