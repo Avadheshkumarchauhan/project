@@ -68,6 +68,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import Footer from "../Components/Footer";
+import { logout } from "../redux/slices/authSlice";
 
 function HomeLayout({ children }) {
 
@@ -75,7 +76,9 @@ function HomeLayout({ children }) {
   const navigate = useNavigate();
 
   // for checking user is logged in
-  const isLoggenIn = useSelector((state) => state?.auth?.isloggedIn);
+  const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
+  
+  
   // for diisplaying the option acc to role
   const role = useSelector((state)=> state?.auth?.role);
   function openDrawer() {
@@ -88,10 +91,10 @@ function HomeLayout({ children }) {
     document.getElementById("overlay").classList.add("hidden");
   }
 
-  function handleLogout(e){
+  async function handleLogout(e){
     e.preventDefault();
-    // const res = await dispatch(logout())
-    // if(res?.payload?.sucess)
+    const res = await dispatch(logout())
+     if(res?.payload?.sucess)
       navigate('/')
   }
 
@@ -127,7 +130,7 @@ function HomeLayout({ children }) {
             {/* MENU */}
             <ul className="flex flex-col gap-1 p-6 mt-12 text-lg font-medium ">
                 <li><Link to="/" className="hover:text-white">Home</Link></li>
-                {isLoggenIn && role == "ADMIN" && (
+                {isLoggedIn && role == "ADMIN" && (
                   <li>
                     <Link to='/admin/dashbord' className="hover:text-white">Admin DashBord</Link>
                   </li>
@@ -135,7 +138,7 @@ function HomeLayout({ children }) {
                 <li><Link to="/courses" className="hover:text-white">All courses</Link></li>
                 <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
                 <li><Link to="/about" className="hover:text-white">About Us</Link></li>
-                {!isLoggenIn && (
+                {!isLoggedIn && (
                   <li className="absolute bottom-4 w-[90%] ">
                     <div className="w-full flex items-center justify-center gap-2 px-2">
                       <button className=" px-4 py-1 font-semibold rounded-md w-full bg-indigo-500 text-white hover:bg-yellow-500 hover:text-black cursor-pointer">
@@ -147,7 +150,7 @@ function HomeLayout({ children }) {
                     </div>
                   </li>
                 )}
-                {isLoggenIn && (
+                { isLoggedIn && (
                   <li className="absolute bottom-4 w-[90%] ">
                     <div className="w-full flex items-center justify-center gap-2 px-2">
                       <button className=" px-4 py-1 font-semibold rounded-md w-full bg-indigo-500 text-white hover:bg-yellow-500 hover:text-black cursor-pointer">
