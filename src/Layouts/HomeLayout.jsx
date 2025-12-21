@@ -77,10 +77,7 @@ function HomeLayout({ children }) {
 
   // for checking user is logged in
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn) || false;
-  
-  
-  
-  
+   
   // for diisplaying the option acc to role
   const role = useSelector((state)=> state?.auth?.role);
   function openDrawer() {
