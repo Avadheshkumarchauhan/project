@@ -76,7 +76,9 @@ function HomeLayout({ children }) {
   const navigate = useNavigate();
 
   // for checking user is logged in
-  const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn) || false;
+  
+  
   
   
   // for diisplaying the option acc to role
@@ -150,7 +152,7 @@ function HomeLayout({ children }) {
                     </div>
                   </li>
                 )}
-                { isLoggedIn && (
+                {isLoggedIn && (
                   <li className="absolute bottom-4 w-[90%] ">
                     <div className="w-full flex items-center justify-center gap-2 px-2">
                       <button className=" px-4 py-1 font-semibold rounded-md w-full bg-indigo-500 text-white hover:bg-yellow-500 hover:text-black cursor-pointer">
