@@ -16,7 +16,7 @@ return(
                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
                     <BsInstagram/>
                 </a>
-                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
+                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'href='https://github.com/Avadheshkumarchauhan' target='_blank'>
                     <BsGithub/>
                 </a>
                 <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
