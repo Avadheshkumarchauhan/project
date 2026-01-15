@@ -129,7 +129,7 @@ function HomeLayout({ children }) {
             {/* MENU */}
             <ul className="flex flex-col gap-1 p-6 mt-12 text-lg font-medium ">
                 <li><Link to="/" className="hover:text-white">Home</Link></li>
-                {isLoggedIn && role == "ADMIN" && (
+                {isLoggedIn && role === "ADMIN" && (
                   <li>
                     <Link to='/admin/dashbord' className="hover:text-white">Admin DashBord</Link>
                   </li>
