@@ -109,9 +109,7 @@ const authSlice = createSlice({
             state.isLoggedIn = !action?.payload?.success;
             state.role = ""
         })
-        .addCase(getUserData.fulfilled, (state, action) => {
-            console.log("aa : ",action?.payload?.user);
-            
+        .addCase(getUserData.fulfilled, (state, action) => {            
             if(!action?.payload?.user) return  
                 
             localStorage.setItem("data", JSON.stringify(action?.payload?.user));
