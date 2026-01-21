@@ -3,11 +3,9 @@ import HomeLayout from "../../Layouts/HomeLayout";
 import { Link } from "react-router-dom";
 
 function Profile(){
-    //const dispatch = useDispatch();
-    const userData = useSelector((state) => state?.auth?.data);
-  
-
-
+       const userData = useSelector((state) => state?.auth?.data
+    );
+    
     return(
        <HomeLayout>
             <div className="min-h-[90vh] flex items-center justify-center ">

@@ -29,7 +29,7 @@ return(
                     </Link>
                 </div>
             </div>
-            <div className="w-1/2 flex items-center justify-center">
+            <div className="w-1/2 flex items-center mb-10 justify-center">
                 <img src={Homepagemainimage} alt="homepage image" />
             </div>
 
