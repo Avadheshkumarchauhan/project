@@ -32,9 +32,7 @@ export const createNewCourse = createAsyncThunk("/course/create", async(data)=>{
         toast.promise(response,{
             loading:"Creating new course",
             success:(data) =>{
-                console.log("Data1 : ",data);
-                console.log("Data1.data : ",data?.data);
-                
+                              
                 return data?.data?.message
             },
             error:"Failed to create course"
@@ -54,8 +52,7 @@ const courseSlice = createSlice({
         builder
         .addCase(getAllCourses.fulfilled, (state, action) =>{
             if(action.payload){
-                console.log(action.payload);
-                
+                               
                 state.courseData= [...action.payload.courses];
             }
         });
