@@ -15,7 +15,24 @@ export const getAllCourses = createAsyncThunk("courses/get", async() =>{
             },
             error: "Failed to get the courses",
         });
-        return (await response).data;
+        return (await response).data.courses;
+    } catch (error) {
+        toast.error(error?.response?.data?.message);
+    }
+});
+
+//Something route
+export const deleteCourses = createAsyncThunk("courses/delete", async(id) =>{
+    try {
+        const response = axiosInstance.delete(`/courses/${id}`);
+        toast.promise(response, {
+            loading: "Deleting course data.....",
+            success:(data) =>{
+                return data?.data?.message;
+            },
+            error: "Failed to delete the courses",
+        });
+        return (await response)?.data?.course;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }
@@ -37,7 +54,7 @@ export const createNewCourse = createAsyncThunk("/course/create", async(data)=>{
             },
             error:"Failed to create course"
         });
-        return (await response)?.data;
+        return (await response)?.data?.course;
     } catch (error) {
         toast.error(error?.response?.data?.message);
 
@@ -51,9 +68,10 @@ const courseSlice = createSlice({
     extraReducers:(builder) =>{
         builder
         .addCase(getAllCourses.fulfilled, (state, action) =>{
-            if(action.payload){
+            
+            if(action?.payload){
                                
-                state.courseData= [...action.payload.courses];
+                state.courseData= [...action.payload];
             }
         });
     }
