@@ -68,6 +68,8 @@ const courseSlice = createSlice({
     extraReducers:(builder) =>{
         builder
         .addCase(getAllCourses.fulfilled, (state, action) =>{
+            console.log("get course slice data ",action);
+            
             
             if(action?.payload){
                                

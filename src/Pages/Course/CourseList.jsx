@@ -7,12 +7,14 @@ import CourseCard from "../../Components/CourseCard";
 function CourseList(){
     const dispatch =useDispatch();
     const {courseData} = useSelector((state) =>state.course);
-    async function loadCourses(){
-        await dispatch(getAllCourses());
-    }
+    // const loadCoursesasync function (){
+    //     await dispatch(getAllCourses());
+    // }
     useEffect(() => {
-        loadCourses()
-    },[]);
+        ;(async() =>{
+            await dispatch(getAllCourses())
+        })();
+    },[dispatch]);
     return(
         <HomeLayout>
             <div className="min-h-[90vh] pt-12 pl-20 flex flex-col gap-10 text-white">

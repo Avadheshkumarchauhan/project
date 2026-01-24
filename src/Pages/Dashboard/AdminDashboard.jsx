@@ -70,8 +70,8 @@ function AdminDashboard(){
                 await dispatch(getStateData());
 
             }
-        )()
-    },[])
+        )();
+    },[dispatch])
     return(
        <HomeLayout>
             <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
@@ -137,8 +137,8 @@ function AdminDashboard(){
                             Create new course
                         </button>
                     </div>
-                    <table className="table overflow-x-scroll bardor">
-                        <thead>
+                    <table className="table overflow-x-scroll shadow-lg">
+                        <thead className="shadow-[0_0_10px_black]">
                             <tr>
                                 <th>S No</th>
                                 <th>Course Title</th>
@@ -153,7 +153,7 @@ function AdminDashboard(){
                             {
                                 courseData?.map((course,inx) =>{
                                     return(
-                                        <tr key={course?._id}>
+                                        <tr key={course?._id} className="shadow-lg">
                                             <td>{inx+1}</td>
                                             <td>
                                                <textarea readOnly value={course?.title} className="w-40 h-auto bg-transparent resize-none"></textarea>
@@ -161,10 +161,10 @@ function AdminDashboard(){
                                             <td>
                                                 {course?.category}
                                             </td>
-                                            <td>
+                                            <td className="px-6">
                                                 {course?.createdBy}
                                             </td>
-                                            <td>
+                                            <td className="px-6">
                                                 {course?.numberOfLectures}
                                             </td>
                                             <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
