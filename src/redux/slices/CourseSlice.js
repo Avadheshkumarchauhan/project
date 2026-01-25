@@ -54,7 +54,7 @@ export const createNewCourse = createAsyncThunk("/course/create", async(data)=>{
             },
             error:"Failed to create course"
         });
-        return (await response)?.data?.course;
+        return (await response)?.data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
 

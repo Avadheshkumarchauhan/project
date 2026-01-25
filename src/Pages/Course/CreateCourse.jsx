@@ -47,6 +47,7 @@ function CreateCourse(){
             return;
         }
         const response =await dispatch(createNewCourse(userInput));
+                
         if(response?.payload?.success){
             setUserInput({
                 title:"",
@@ -63,7 +64,7 @@ function CreateCourse(){
 
     return (
     <HomeLayout>
-            <div className="flex justify-center items-center h-[100vh]">
+            <div className="flex justify-center items-center h-[100vh] mb-10">
                 <form  onSubmit={onFormSubmit}
                 className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[700px] my-10 shadow-[0_0_10px_black] relative"
                 >

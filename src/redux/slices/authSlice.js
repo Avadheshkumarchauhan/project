@@ -109,7 +109,7 @@ const authSlice = createSlice({
             
             localStorage.clear();
             state.data = {};
-            state.isLoggedIn =false //||!action?.payload?.success;
+            state.isLoggedIn =!action?.payload?.success;
             state.role = ""
         })
         .addCase(getUserData.fulfilled, (state, action) => { 
