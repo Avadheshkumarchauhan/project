@@ -9,13 +9,10 @@ function CourseList(){
     const {courseData} = useSelector((state) =>state.course);
     console.log("course list page : ",courseData);
 
-    async function loadCourses(){
-        await dispatch(getAllCourses());
-     }
     useEffect(() => {
-        loadCourses()
+        dispatch(getAllCourses());
         
-    },[]);
+    },[dispatch]);
     return(
         <HomeLayout>
             <div className="min-h-[90vh] pt-12 pl-20 flex flex-col gap-10 text-white">

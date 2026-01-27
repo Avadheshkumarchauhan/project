@@ -71,7 +71,7 @@ function AdminDashboard(){
 
             }
         )();
-    },[dispatch])
+    },[])
     return(
        <HomeLayout>
             <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">

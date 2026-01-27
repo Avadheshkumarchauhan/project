@@ -64,7 +64,7 @@ function AddLecture(){
            navigate("/courses");
            return;
         }
-    },[courseDetails,navigate]);
+    },[]);
 
     return(
        <HomeLayout>

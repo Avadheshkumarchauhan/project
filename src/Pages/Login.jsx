@@ -42,16 +42,13 @@ function Login(){
        
        if(response?.payload?.success){
             navigate("/");
+
+            setLoginData({
+                email:"",
+                password:"",           
+           });            
        }
-
        
-
-       setLoginData({
-            email:"",
-            password:"",
-           
-        });
-        
      }
 
     return(

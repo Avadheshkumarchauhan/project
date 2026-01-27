@@ -89,18 +89,16 @@ function Signup(){
               
        if(response?.payload?.success){
             navigate("/");
+
+            setSignupData({
+                 fullName:"",
+                 email:"",
+                 password:"",
+                 avatar:""
+             });
+             setpreviewImage("");
        }
-
-       
-
-       setSignupData({
-            fullName:"",
-            email:"",
-            password:"",
-            avatar:""
-        });
-        setpreviewImage("");
-     }
+    }
 
     return(
         <HomeLayout>

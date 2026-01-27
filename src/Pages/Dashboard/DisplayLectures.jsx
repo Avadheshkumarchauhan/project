@@ -29,7 +29,7 @@ function DisplayLectures(){
         }
         dispatch(getCourseLectures(state?._id));        
 
-    },[state,navigate,dispatch]);
+    },[]);
 
     return(
         <HomeLayout>

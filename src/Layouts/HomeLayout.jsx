@@ -92,9 +92,12 @@ function HomeLayout({ children }) {
 
   async function handleLogout(e){
     e.preventDefault();
-    const res = await dispatch(logout())
-     if(res?.payload?.sucess)
-      navigate('/')
+    const res = await dispatch(logout());
+    console.log("logout: ",res.payload);
+    
+     if(res?.payload?.sucess){
+       navigate('/');
+     }
   }
 
   return (
