@@ -24,11 +24,12 @@ function DisplayLectures(){
     }
         useEffect(()=>{
         if(!state){
-           navigate("/courses")
+           navigate("/courses");
+           return;
         }
         dispatch(getCourseLectures(state?._id));        
 
-    },[]);
+    },[state,navigate,dispatch]);
 
     return(
         <HomeLayout>
