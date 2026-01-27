@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import axiosInstance from "../../helper/axiosInstance";
 
 const initialState={
-Lectures:[]
+lectures:[]
 
 }
 export const getCourseLectures= createAsyncThunk("/course/lecture/get", async(cid) =>{
@@ -24,10 +24,11 @@ export const getCourseLectures= createAsyncThunk("/course/lecture/get", async(ci
 });
 export const addCourseLecture= createAsyncThunk("/course/lecture/add", async(data) =>{
     try {
+               
         const formData = new FormData();
         formData.append("lecture",data.lecture);
         formData.append("title",data.title);
-        formData.append("description",data.discription);
+        formData.append("description",data.description);
         const response =  axiosInstance.post(`/courses/${data.id}`,formData);
         toast.promise(response,{
             loading:"Adding course lecture....",
@@ -45,7 +46,7 @@ export const addCourseLecture= createAsyncThunk("/course/lecture/add", async(dat
 export const deleteCourseLecture= createAsyncThunk("/course/lecture/delete", async(data) =>{
     try {
        
-        const response =  axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
+        const response = axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.promise(response,{
             loading:"Delete course lecture....",
             success:(data)=>{
@@ -67,13 +68,15 @@ const lectureSlice = createSlice({
     extraReducers:(builder)=>{
         builder
         .addCase(getCourseLectures.fulfilled,(state,action)=>{
-             console.log("Lecture slice get data  : ",action);
-            state.Lectures= action?.payload?.lectures;
+             console.log("Lecture slice get data  : ",action?.payload?.lectures);
+            if(action?.payload?.success){
+                state.lectures= action.payload.lectures;
+            }
         })
         .addCase(addCourseLecture.fulfilled,(state,action)=>{
             console.log("Lecture slice add data : ",action);
             
-            state.Lectures= action?.payload?.course?.lectures;
+            state.lectures= action?.payload?.course?.lectures;
         })
     }
 });

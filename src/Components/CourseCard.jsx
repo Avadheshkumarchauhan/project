@@ -25,7 +25,7 @@ return(
                 </p>
                 <p className="font-semibold">
                     <span className="text-yellow-500 font-bold">Total : </span>
-                    {data?.numberOfLectures}
+                    {data?.numbersOfLectures}
                 </p>
                 <p className="font-semibold">
                     <span className="text-yellow-500 font-bold">Instructor: </span>

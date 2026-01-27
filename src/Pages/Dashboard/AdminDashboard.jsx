@@ -61,13 +61,13 @@ function AdminDashboard(){
             }
         }
     }
-
+    
     useEffect(()=>{
         ;(
             async() =>{
-                await dispatch(getAllCourses());
-                await dispatch(getPaymentRecord());
-                await dispatch(getStateData());
+                 await dispatch(getAllCourses());
+                 await dispatch(getPaymentRecord());
+                 await dispatch(getStateData());
 
             }
         )();
@@ -156,7 +156,7 @@ function AdminDashboard(){
                                         <tr key={course?._id} className="shadow-lg">
                                             <td>{inx+1}</td>
                                             <td>
-                                               <textarea readOnly value={course?.title} className="w-40 h-auto bg-transparent resize-none"></textarea>
+                                               <textarea readOnly value={course?.title} className="w-40 h-auto bg-transparent resize-none  "></textarea>
                                             </td>
                                             <td>
                                                 {course?.category}
@@ -165,7 +165,7 @@ function AdminDashboard(){
                                                 {course?.createdBy}
                                             </td>
                                             <td className="px-6">
-                                                {course?.numberOfLectures}
+                                                {course?.numbersOfLectures}
                                             </td>
                                             <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
                                                 <textarea readOnly value={course?.description} className="w-80 h-auto bg-transparent resize-none"></textarea>

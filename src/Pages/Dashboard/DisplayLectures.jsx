@@ -8,9 +8,13 @@ function DisplayLectures(){
     const dispatch =useDispatch();
     const navigate = useNavigate();
     const {state} =useLocation();
+       
     const {lectures}=useSelector((state)=>state.lecture);
+    console.log("lecture displya page ",lectures);     
+    
     const {role}=useSelector((state)=>state.auth);
     const [currentVideo,setCurrentVideo] =useState(0);
+
     async function onLectureDlete(courseId,lectureId){
         console.log(courseId," , ",lectureId);
         await dispatch(deleteCourseLecture({courseId:courseId,lectureId:lectureId}));
@@ -18,14 +22,11 @@ function DisplayLectures(){
         
 
     }
-
-    useEffect(()=>{
-        console.log("Display lecture page data : ",state);
+        useEffect(()=>{
         if(!state){
-           // navigate("/courses")
+           navigate("/courses")
         }
-        dispatch(getCourseLectures(state?._id));
-        
+        dispatch(getCourseLectures(state?._id));        
 
     },[]);
 
@@ -35,7 +36,8 @@ function DisplayLectures(){
                 <div className="text-center text-2xl font-semibold text-yellow-500">
                     Course Name :{" "} {state?.title}
                 </div>
-                {lectures&& lectures.length > 0 && <div className="flex justify-center gap-10 w-full">
+                {(lectures&& lectures.length > 0 )? 
+                (<div className="flex justify-center gap-10 w-full">
                     {/*Left section for displaying course details to admin  */}
                     <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
                         <video
@@ -75,7 +77,7 @@ function DisplayLectures(){
                             lectures.map((lecture,idx)=>{
                                 return(
                                     <li className ="space-y-2" key={lecture?._id}>
-                                        <p className="cursor-pointer" onClick={setCurrentVideo(idx)}>
+                                        <p className="cursor-pointer" onClick={()=>setCurrentVideo(idx)}>
                                             <span>
                                                 {" "} Lecture {idx+1} : {" "}
                                             </span>
@@ -92,7 +94,15 @@ function DisplayLectures(){
                             })
                         }
                     </ul>
-                </div>}
+                </div>):
+                    (
+                     role && role==="ADMIN" && (
+                            <button onClick={()=> navigate("/course/addlecture",{state:{...state}})} className="  bg-yellow-600 text-white hover:bg-yellow-500 rounded-md px-2 cursor-pointer py-1 font-semibold text-sm">
+                                Add new lecture
+                            </button>
+                        )
+                    )
+                }
             </div>
         </HomeLayout>
     )
