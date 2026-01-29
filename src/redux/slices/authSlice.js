@@ -106,11 +106,11 @@ const authSlice = createSlice({
         })
         .addCase(logout.fulfilled, (state, action) =>{ 
             console.log("logout auth clice: ",action);
-            if(!action?.payload?.success) return         
+            if(!action?.payload?.success)// return         
             
             localStorage.clear();
             state.data = {};
-            state.isLoggedIn =!action?.payload?.success;
+            state.isLoggedIn =false//!action?.payload?.success;
             state.role = ""
         })
         .addCase(getUserData.fulfilled, (state, action) => { 
