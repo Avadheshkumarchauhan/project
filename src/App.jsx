@@ -27,6 +27,7 @@ import AdminDashboard from './Pages/Dashboard/AdminDashboard'
 import DisplayLectures from './Pages/Dashboard/DisplayLectures'
 import AddLecture from './Pages/Dashboard/AddLecture'
 import Checkout from './Pages/Payment/Checkout'
+import CheckoutSuccess from './Pages/Payment/CheckoutSuccess'
 
 function App() {
  
@@ -50,6 +51,7 @@ function App() {
         <Route path='/user/profile' element= {<Profile/>}></Route>
         <Route path='/user/editprofile' element= {<EditProfile/>}></Route>
         <Route path='/checkout' element= {<Checkout/>}></Route>
+        <Route path='/checkout/success' element= {<CheckoutSuccess/>}></Route>
         <Route path='/course/displaylectures' element= {<DisplayLectures/>}></Route>
       </Route>
       <Route path='/denied' element= {<Denied/>}></Route>
