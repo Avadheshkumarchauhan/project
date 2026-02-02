@@ -18,6 +18,9 @@ function AdminDashboard(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {allUserCount, subscribedCount} = useSelector((state) =>state?.stat);
+        
+    console.log(allUserCount , " :: ",subscribedCount);
+    
     const {allPayment,monthlySalesRecord} = useSelector((state) =>state?.razorpay);
     const userData = {
         labels:["Resistered User","Enrolled User"],
@@ -45,18 +48,17 @@ function AdminDashboard(){
             }
         ]
     }
-    const {courseData} = useSelector((state) =>state?.course
-    ); 
+    const {courseData} = useSelector((state) =>state?.course); 
 
     async function onCourseDelete(id) {
         if(window.confirm("Are you sure want to delete the course ? " )){
             const res = await dispatch(deleteCourses(id));
-            console.log("admin dash respons",res);
+            console.log("admin dash respons : ",res);
             
             if(res?.payload){
                 const x = await dispatch(getAllCourses());
 
-                console.log(" admin dashboard After delete getcoursedata: ",x);
+                console.log(" admin dashboard After delete getcoursedata : ",x);
                 
             }
         }

@@ -29,6 +29,7 @@ import AddLecture from './Pages/Dashboard/AddLecture'
 import Checkout from './Pages/Payment/Checkout'
 import CheckoutSuccess from './Pages/Payment/CheckoutSuccess'
 import CheckoutFail from './Pages/Payment/ChechoutFail'
+import ChangePassword from './Pages/ChangePassword'
 
 function App() {
  
@@ -50,6 +51,7 @@ function App() {
       <Route path='/contact' element= {<Contact/>}></Route>
       <Route  element= {<RequireAuth allowedRoles={["ADMIN","USER"]}/>}>
         <Route path='/user/profile' element= {<Profile/>}></Route>
+        <Route path='/changepassword' element= {<ChangePassword/>}></Route>
         <Route path='/user/editprofile' element= {<EditProfile/>}></Route>
         <Route path='/checkout' element= {<Checkout/>}></Route>
         <Route path='/checkout/success' element= {<CheckoutSuccess/>}></Route>

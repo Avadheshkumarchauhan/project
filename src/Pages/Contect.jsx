@@ -3,8 +3,10 @@ import HomeLayout from "../Layouts/HomeLayout";
 import toast from "react-hot-toast";
 import { isEmail } from "../helper/regexMatcher";
 import axiosInstance from "../helper/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 function Contact(){
+    const navigate = useNavigate();
     const[userInput, setUserInput] = useState({
         name:"",
         email:"",
@@ -32,11 +34,11 @@ function Contact(){
         }
 
         try {
-            const response = axiosInstance.post("/contect",{...userInput});
+            const response = axiosInstance.post("/contact",{...userInput});
             toast.promise(response,{
                 loading:"Submitting your message....",
                 success:"Form submitted successfully",
-                error:"faild to sunmit the form",
+                error:"faild to submit the form",
             });
             const contactResponse = await response;
             console.log(contactResponse);
@@ -47,6 +49,7 @@ function Contact(){
                     email:"",
                     message:"",
                 })
+                navigate("/")
             }
         } catch (error) {
             toast.error(error.message || "opration failed....")

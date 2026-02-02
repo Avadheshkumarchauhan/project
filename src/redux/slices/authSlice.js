@@ -78,6 +78,26 @@ export const updateProfile = createAsyncThunk("/user/update/profile",async(data)
         toast.error(error?.response?.data?.message);
     }
 })
+export const updatePassword = createAsyncThunk("/update/password",async(data) =>{
+    try {  
+        const res = axiosInstance.post("/user/change-password", data);
+
+        toast.promise(res, {
+            loading:"Wait password update in progress .... ",
+            success: (data) =>{  
+                                             
+                return data?.data?.message;
+            },
+            error: "Faild to update password "
+        });
+        return (await res).data;
+        
+
+    } catch (error) {
+        toast.error(error?.response?.data?.message);
+    }
+})
+
 export const getUserData = createAsyncThunk("/user/details",async() =>{
     try {
         const res = axiosInstance.get("user/me");
