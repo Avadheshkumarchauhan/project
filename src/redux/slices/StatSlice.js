@@ -37,7 +37,7 @@ const statSlice = createSlice({
             console.log("Get user stateSlice ",action);
             
             state.allUserCount = action?.payload?.allUsersCount;
-            state.subscribedCount= action?.payload?.subscribedUsersCount
+            state.subscribedCount= action?.payload?.subscriptionUsersCount
         })
 
     }

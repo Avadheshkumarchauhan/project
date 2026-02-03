@@ -44,7 +44,8 @@ function Checkout(){
                 paymentDetails.razorpay_subscription_id= response?.razorpay_subscription_id;
 
                 const res = await dispatch(verifyUserPayment(paymentDetails));
-                res?.payload?.success ? navigate("/chechout/success") :navigate("checkout/fail");
+                                
+                res?.payload?.success ? navigate("/checkout/success") :navigate("/checkout/fail");
             }
         }
 
