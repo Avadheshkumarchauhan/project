@@ -76,7 +76,7 @@ function AdminDashboard(){
     },[])
     return(
        <HomeLayout>
-            <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white w-full">
+            <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
                 <h1 className="text-center text-5xl font-semibold text-yellow-500">Admin Dashboard</h1>
                 <div className=" grid grid-cols-2 gap-5 m-auto mx-10">
                     <div className="flex flex-col items-center gap-10 p-5 shadow-lg  rounded-md">
@@ -172,9 +172,9 @@ function AdminDashboard(){
                                             <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
                                                 <textarea readOnly value={course?.description} className="w-80 h-auto bg-transparent resize-none"></textarea>
                                             </td>
-                                            <td className="flex items-center gap-4">
+                                            <td className="flex items-center gap-2">
                                                 <button 
-                                                    className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold cursor-pointer mx-4 "
+                                                    className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-300 text-xl py-2 px-2 rounded-md font-bold cursor-pointer mx-2 "
                                                     onClick={()=>{
                                                         navigate("/course/displaylectures",{state:{...course}});
                                                     }}
@@ -182,7 +182,7 @@ function AdminDashboard(){
                                                     <BsCollectionPlayFill/>
                                                 </button>
                                                 <button 
-                                                    className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold cursor-pointer "
+                                                    className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-300 text-xl py-2 px-2 rounded-md font-bold cursor-pointer "
                                                     onClick={()=>{
                                                         onCourseDelete(course?._id);
                                                         }
